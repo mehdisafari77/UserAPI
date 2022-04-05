@@ -32,6 +32,8 @@ export default class App extends component {
         .catch(error => console.log(error))
     )
  }
+ _keyExtractor = (datasource, index) => datasource.email;
+
  componentDidMount() {
    this.getUserFromApi();
  }  
@@ -39,9 +41,15 @@ export default class App extends component {
  render() {
     if(this.state.isLoading) {
       return(
-        <View>
-          <ActivityIndicator size="larger" color="#01CBC6" />
-        </View>
+        <FlatList>
+          data={rhis.state.dataSource}
+          keyExtractor={this._keyExtractor}
+          renderItem={(item) => (
+            <Card>
+              
+            </Card>
+          )}
+        </FlatList>
       )
     }
       return (
