@@ -7,7 +7,7 @@ import {
   Image, 
   ActivityIndicator,
  } from 'react-native';
- import { Card, CardItem } from 'native-base'
+ import { Card, CardItem, NativeBaseProvider, Box } from 'native-base'
 
  export default class App extends React.Component {
 
@@ -40,49 +40,54 @@ import {
  }  
  
  render() {
-    // if(this.state.isLoading) {
-    //   return(
-    //     <View style={styles.progress}>
-    //       <ActivityIndicator size="large" color="#01CBC6"/>
-    //     </View>
-    //   )
-    // }
+    if(this.state.isLoading) {
+      return(
+        <View style={styles.progress}>
+          <ActivityIndicator size="large" color="#01CBC6"/>
+        </View>
+      )
+    }
       return (
-        <Text>
-          Hello
-        </Text>
-      //   <FlatList>
-      //   data={this.state.dataSource}
-      //   keyExtractor={this._keyExtractor}
-      //   renderItem={({ item }) => (
-      //     <Card>
-      //       <CardItem>
-      //         <View style={styles.container}>
-      //             <Image 
-      //               style={styles.profilepic}
-      //               source={{
-      //                 uri: item.picture.medium
-      //               }}
-      //             />
-      //         </View>
-      //         <View style={styles.userinfo}>
-      //             <Text>
-      //               Name: {item.name.title} {item.name.first} {item.name.last}
-      //             </Text>
-      //             <Text>
-      //               Email: {item.email}
-      //             </Text>
-      //             <Text>
-      //               City: {item.location.city}
-      //             </Text>
-      //             <Text>
-      //               City: {item.phone}
-      //             </Text>
-      //         </View>
-      //       </CardItem>
-      //     </Card>
-      //   )}
-      // </FlatList>
+        // <View style={styles.container}>
+        //   <Text>
+        //     Hello
+        //   </Text>
+        // </View>
+
+        <NativeBaseProvider>
+          <FlatList
+              data={this.state.dataSource}
+              keyExtractor={this._keyExtractor}
+              renderItem={({ item }) => (
+                <Card>
+                  <CardItem>
+                    <View style={styles.container}>
+                        <Image 
+                          style={styles.profilepic}
+                          source={{
+                            uri: item.picture.medium
+                          }}
+                        />
+                    </View>
+                    <View style={styles.userinfo}>
+                        <Text>
+                          Name: {item.name.title} {item.name.first} {item.name.last}
+                        </Text>
+                        <Text>
+                          Email: {item.email}
+                        </Text>
+                        <Text>
+                          City: {item.location.city}
+                        </Text>
+                        <Text>
+                          City: {item.phone}
+                        </Text>
+                    </View>
+                  </CardItem>
+                </Card>
+              )}
+            /> 
+        </NativeBaseProvider>
       );
     }
  }
