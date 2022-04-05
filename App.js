@@ -93,6 +93,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  profilepic: {},
-  userinfo: {},
+  profilepic: {
+    flex: 2,
+    height: 100,
+    width: 100,
+    marginEnd: 10
+  },
+  userinfo: {
+    flex: 5,
+    flexDirection: "column"
+  },
 });
