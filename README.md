@@ -5,5 +5,5 @@ React Native API Fetching
 Basic API Fetching using axcios in React Native
 
 ## Gif of App
-![Gif](./UserAPI/gif.gif)
+![Gif](./gif.gif)
 
