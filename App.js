@@ -46,7 +46,30 @@ export default class App extends component {
           keyExtractor={this._keyExtractor}
           renderItem={(item) => (
             <Card>
-              
+              <CardItem>
+                <View style={styles.container}>
+                    <Image 
+                      style={styles.profilepic}
+                      source={{
+                        uri: item.picture.medium
+                      }}
+                    />
+                </View>
+                <View style={styles.userinfo}>
+                    <Text>
+                      Name: {item.name.title} {item.name.first} {item.name.last}
+                    </Text>
+                    <Text>
+                      Email: {item.email}
+                    </Text>
+                    <Text>
+                      City: {item.location.city}
+                    </Text>
+                    <Text>
+                      City: {item.phone}
+                    </Text>
+                </View>
+              </CardItem>
             </Card>
           )}
         </FlatList>
@@ -69,4 +92,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  profilepic: {},
+  userinfo: {},
 });
