@@ -5,13 +5,17 @@ import {
   Text,
   ScrollView,
   View,
-  Button,
   Image,
   Platform,
 } from "react-native";
+import { Button, NativeBaseProvider} from "native-base";
 import Constants from "expo-constants";
+import styled from 'styled-components/native';
+
 const baseUrl = "https://reqres.in";
+
 function User({ userObject }) {
+
   return (
     <View>
       <Image
@@ -60,37 +64,54 @@ export default function App() {
   }, [userId]);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.wrapperStyle}>
-        {!isLoading && !hasError && user && <User userObject={user} />}
-      </View>
-      <View style={styles.wrapperStyle}>
-        {isLoading && <Text> Loading </Text>}
-        {!isLoading && hasError && <Text> An error has occurred </Text>}
-      </View>
-      <View>
-        <Button
-          title="Load user"
+    <NativeBaseProvider>
+        <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.wrapperStyle}>
+          {!isLoading && !hasError && user && <User userObject={user} />}
+        </View>
+        <View style={styles.wrapperStyle}>
+          {isLoading && <Text> Loading </Text>}
+          {!isLoading && hasError && <Text> An error has occurred </Text>}
+        </View>
+        <View>
+          <Button style={styles.buttonStyles}
           onPress={changeUserIdHandler}
           disabled={isLoading}
-          style={styles.buttonStyles}
-        />
-      </View>
-    </ScrollView>
+          color= 'green'>
+            Load User
+          </Button>
+          <Title>
+            Hello
+          </Title>
+        </View>
+      </ScrollView>
+    </NativeBaseProvider>
+    
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "dodgerblue",
+    // backgroundColor: "dodgerblue",
     alignItems: "center",
     justifyContent: "center",
     marginTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
+    zIndex: 1
   },
   wrapperStyle: {
     minHeight: 128,
   },
   buttonStyles: {
     padding: 100,
-  },
+    backgroundColor: 'blue',
+    borderColor: 'black',
+    borderRadius: 10,
+    zIndex: 2
+  }
 });
+
+const Title = styled.Text`
+  color: green;
+  text-align: center;
+  font-size: 16px;
+`;
